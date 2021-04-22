@@ -5,9 +5,14 @@ import Slider from './slider.js';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Button from '@material-ui/core/Button';
 import useFirestore from '../hooks/useFirestore.js';
-// import pineapples from '../images/pineapples.jpg';
+import styled from 'styled-components';
 
 const imageVariable = document.getElementById('edit-image');
+
+const EditImage = styled.img`
+  max-height: 600px;
+  width: auto;
+`
 
 const Editor = ({clickedImage, boolean}) => {
   const { images } = useFirestore('images');
@@ -44,28 +49,27 @@ const Editor = ({clickedImage, boolean}) => {
     return { filter: styles.join(' ') };
     };
 
-    // const pineapplePic = useRef(null);
-    // //new code for react-caman
-    // useEffect(() => {
-    //   window.Caman(`#${pineapplePic.current.id}`, function(){
-    //     this.exposure(-10);
-    //     this.newLayer(function() {
-    //       this.setBlendingMode('multiply');
-    //       this.opacity(80)
-    //       this.fillColor('#6899ba')
-    //       this.copyParent();
-    //       this.filter.brightness(10);
-    //       this.filter.contrast(20);
-    //     })
-    //     this.brightness(10);
-    //     this.contrast(30);
-    //     this.sepia(60);
-    //     this.saturation(-30);
-    //     this.render();
-    //   });
-    // }, [pineapplePic.current])
-
-
+    const resetFilters = () => {
+      const styles = filters.map(filter => {
+        if (
+          filter.property === 'brightness'
+          || filter.property === 'contrast'
+          || filter.property === 'saturate'
+        ){
+          filter.value = 100;
+        } else if (
+            filter.property === 'grayscale'
+            || filter.property === 'sepia'
+            || filter.property === 'invert'
+            || filter.property === 'hue-rotate'
+            || filter.property === 'blur'
+        ){
+          filter.value = 0;
+        }
+        return `${filter.property}(${filter.value}${filter.unit})`
+      })
+      return { filter: styles.join(' ') };
+    };
 
   // uploadFile.addEventListener('change', () => {
   //   // const file = document.getElementById('upload-file').files[0]
@@ -145,8 +149,6 @@ const Editor = ({clickedImage, boolean}) => {
         width: '100vw'
       }}
     >
-
-
       <TransformWrapper
         defaultScale = {1}
         defaultPositionX = {200}
@@ -162,20 +164,12 @@ const Editor = ({clickedImage, boolean}) => {
             </Button>
           </div>
           <TransformComponent>
-              <img
-                id = 'edit-image'
+              <EditImage
                 src = {renderedImage}
                 alt = 'something'
                 style = {setImageFilters()}
               />
-                <canvas id = 'canvas'></canvas>
-              {/* <img
-                id="kitten"
-                // ref={pineapplePic}
-                src={pineapples}
-                alt=""
-                style={{ width: 200, height: 200 }}
-              /> */}
+                {/* <canvas id = 'canvas'></canvas> */}
           </TransformComponent>
         </React.Fragment>
       )}
@@ -190,6 +184,12 @@ const Editor = ({clickedImage, boolean}) => {
         }}
       >
         <div className = 'filter-container'>
+          <Button
+              color = 'secondary'
+              onClick = {resetFilters}
+            >
+              Reset
+          </Button>
           {filters.map((filter, index) => (
             <FilterItem
               key = {index}
