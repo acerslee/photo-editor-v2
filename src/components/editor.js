@@ -5,8 +5,9 @@ import Slider from './slider.js';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Button from '@material-ui/core/Button';
 import useFirestore from '../hooks/useFirestore.js';
+// import pineapples from '../images/pineapples.jpg';
 
-// const imageVariable = document.getElementById('edit-image');
+const imageVariable = document.getElementById('edit-image');
 
 const Editor = ({clickedImage, boolean}) => {
   const { images } = useFirestore('images');
@@ -41,7 +42,28 @@ const Editor = ({clickedImage, boolean}) => {
     })
 
     return { filter: styles.join(' ') };
-  };
+    };
+
+    // const pineapplePic = useRef(null);
+    // //new code for react-caman
+    // useEffect(() => {
+    //   window.Caman(`#${pineapplePic.current.id}`, function(){
+    //     this.exposure(-10);
+    //     this.newLayer(function() {
+    //       this.setBlendingMode('multiply');
+    //       this.opacity(80)
+    //       this.fillColor('#6899ba')
+    //       this.copyParent();
+    //       this.filter.brightness(10);
+    //       this.filter.contrast(20);
+    //     })
+    //     this.brightness(10);
+    //     this.contrast(30);
+    //     this.sepia(60);
+    //     this.saturation(-30);
+    //     this.render();
+    //   });
+    // }, [pineapplePic.current])
 
 
 
@@ -69,20 +91,20 @@ const Editor = ({clickedImage, boolean}) => {
   // })
 
 
-  // var canvas = document.getElementById('canvas');
+  var canvas = document.getElementById('canvas');
 
-  // if (imageVariable !== null) {
-  //   imageVariable.addEventListener('load', () => {
-  //     var img = new Image();
-  //     console.log('canvas',canvas);
-  //     var ctx = canvas.getContext('2d');
+  if (imageVariable !== null) {
+    imageVariable.addEventListener('load', () => {
+      var img = new Image();
+      console.log('canvas',canvas);
+      var ctx = canvas.getContext('2d');
 
-  //     img.onload = function() {
-  //       ctx.drawImage(img, 0, 0, 500, 500);
-  //     };
-  //     img.src = '../../images/pineapples.jpg';
-  //   });
-  // }
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0, 500, 500);
+      };
+      img.src = '../images/pineapples.jpg';
+    }, false);
+  }
 
 
   // function download(canvas, filename) {
@@ -140,13 +162,20 @@ const Editor = ({clickedImage, boolean}) => {
             </Button>
           </div>
           <TransformComponent>
-            {/* <canvas id = 'canvas'></canvas> */}
               <img
                 id = 'edit-image'
                 src = {renderedImage}
                 alt = 'something'
                 style = {setImageFilters()}
               />
+                <canvas id = 'canvas'></canvas>
+              {/* <img
+                id="kitten"
+                // ref={pineapplePic}
+                src={pineapples}
+                alt=""
+                style={{ width: 200, height: 200 }}
+              /> */}
           </TransformComponent>
         </React.Fragment>
       )}
