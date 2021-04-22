@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import useFirestore from '../hooks/useFirestore.js';
 import styled from 'styled-components';
 
-const imageVariable = document.getElementById('edit-image');
+// const imageVariable = document.getElementById('edit-image');
 
 const EditImage = styled.img`
   max-height: 600px;
@@ -159,14 +159,13 @@ const Editor = ({clickedImage, boolean}) => {
           <div
             className = 'tools'
             style = {{
-              marginBottom: '15px'
+              marginBottom: '15px',
             }}
           >
-            <Button variant = 'contained' onClick={zoomIn}>+</Button>
-            <Button variant = 'contained' onClick={zoomOut}>-</Button>
+            <Button variant = 'contained' onClick={zoomIn}>Zoom In</Button>
+            <Button variant = 'contained' onClick={zoomOut}>Zoom Out</Button>
             <Button variant = 'contained' onClick={resetTransform}>Reset</Button>
-            <Button variant = 'contained' id = 'download-button'>Download file here
-            </Button>
+            {/* <Button variant = 'contained' id = 'download-button'>Download file here</Button> */}
           </div>
           <TransformComponent>
               <EditImage

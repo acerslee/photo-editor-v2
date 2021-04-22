@@ -5,6 +5,7 @@ import ProgressBar from './progress.js';
 import '@fontsource/pacifico';
 import styled from 'styled-components';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import Copyright from './copyright.js';
 
 const Header = styled.h1`
   font-family: pacifico;
@@ -14,6 +15,7 @@ const Header = styled.h1`
 
 const OutputContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -61,17 +63,16 @@ const Homepage = () => {
           <FaCloudUploadAlt /> Upload Pic
         </label>
         <input id = 'pic-upload' type = 'file' onChange = {handleChange}/>
-        <OutputContainer>
-          {error && <div className = 'error' style = {{color: 'red'}}>{error}</div>}
+          {error && <div className = 'error' style = {{color: 'red'}}><strong>{error}</strong></div>}
           {image && <div>{image.name}</div>}
           {image && <ProgressBar image = {image} setImage = {setImage} />}
-        </OutputContainer>
       </OutputContainer>
 
       {renderEditor}
       <ImageGrid
         updateEditImage = {updateEditImage}
       />
+      <Copyright />
     </div>
   );
 };
