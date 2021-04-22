@@ -11,7 +11,6 @@ import {
     FIREBASE_MEASUREMENT_ID
   } from './firebase_key.js';
 
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey:  FIREBASE_API_KEY,
@@ -29,8 +28,8 @@ const fireStorage = firebase.storage();
 const fireStore = firebase.firestore();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
-
 export {
+    firebaseConfig,
     fireStorage,
     fireStore,
     timestamp
