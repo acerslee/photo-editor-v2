@@ -95,20 +95,20 @@ const Editor = ({clickedImage, boolean}) => {
   // })
 
 
-  var canvas = document.getElementById('canvas');
+  // var canvas = document.getElementById('canvas');
 
-  if (imageVariable !== null) {
-    imageVariable.addEventListener('load', () => {
-      var img = new Image();
-      console.log('canvas',canvas);
-      var ctx = canvas.getContext('2d');
+  // if (imageVariable !== null) {
+  //   imageVariable.addEventListener('load', () => {
+  //     var img = new Image();
+  //     console.log('canvas',canvas);
+  //     var ctx = canvas.getContext('2d');
 
-      img.onload = function() {
-        ctx.drawImage(img, 0, 0, 500, 500);
-      };
-      img.src = '../images/pineapples.jpg';
-    }, false);
-  }
+  //     img.onload = function() {
+  //       ctx.drawImage(img, 0, 0, 500, 500);
+  //     };
+  //     img.src = {renderedImage};
+  //   }, false);
+  // }
 
 
   // function download(canvas, filename) {
@@ -156,7 +156,12 @@ const Editor = ({clickedImage, boolean}) => {
       >
       {({ zoomIn, zoomOut, resetTransform, ...rest}) => (
         <React.Fragment>
-          <div className = 'tools'>
+          <div
+            className = 'tools'
+            style = {{
+              marginBottom: '15px'
+            }}
+          >
             <Button variant = 'contained' onClick={zoomIn}>+</Button>
             <Button variant = 'contained' onClick={zoomOut}>-</Button>
             <Button variant = 'contained' onClick={resetTransform}>Reset</Button>

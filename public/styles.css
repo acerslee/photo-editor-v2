@@ -7,15 +7,14 @@ body{
   padding: 0;
 }
 
-/*homepage*/
-.output{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+input[type="file"] {
+    display: none;
 }
-
-.error{
-  color: red;
+.custom-pic-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 14px;
+    cursor: pointer;
 }
 
 /* editor */
