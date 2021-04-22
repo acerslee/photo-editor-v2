@@ -12,6 +12,9 @@ import styled from 'styled-components';
 const EditImage = styled.img`
   max-height: 600px;
   width: auto;
+  @media(max-width: 700px){
+    max-height: 250px;
+  }
 `
 
 const Editor = ({clickedImage, boolean}) => {
@@ -144,9 +147,7 @@ const Editor = ({clickedImage, boolean}) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column',
-        height: '100vh',
-        width: '100vw'
+        flexDirection: 'column'
       }}
     >
       <TransformWrapper

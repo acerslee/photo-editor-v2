@@ -11,6 +11,9 @@ const Header = styled.h1`
   font-family: pacifico;
   text-align: center;
   font-size: 10vh;
+  @media(max-width: 700px){
+    font-size: 4vh;
+  }
 `;
 
 const OutputContainer = styled.div`
